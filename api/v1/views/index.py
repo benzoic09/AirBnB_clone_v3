@@ -47,11 +47,9 @@ def stats():
     objs = storage.all().values()
     obdict = {}
     for obj in objs:
+        cls = obj.__class__
         clsname = obj.__class__.__name__
-        try:
-            obdict[clsname] += 1
-        except KeyError:
-            obdict[clsname] = 1
+        obdict[clsname] = storage.count(cls)
 
     resp = make_response(jsonify(obdict), 200)
     return resp
