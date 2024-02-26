@@ -27,7 +27,7 @@ def err_400(e):
 @app_views.route('/status', methods=['GET'], strict_slashes=False)
 def show_status():
     """returns the api status"""
-    resp = make_response(jsonify({'status': 'ok'}))
+    resp = make_response(jsonify({'status': 'OK'}))
     resp.status_code = 200
     return resp
 
