@@ -3,6 +3,7 @@
 This module contains the principal application
 """
 
+
 from flask import Flask
 from os import getenv
 from api.v1.views import app_views
