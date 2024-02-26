@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+This module contains the principal application
+"""
 
 from flask import Flask
 from os import getenv

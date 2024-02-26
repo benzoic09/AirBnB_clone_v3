@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """
-Index file
+Index file for the views
 """
+
 
 from flask import jsonify, make_response
 from api.v1.views import app_views
