@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""
-This module contains the principal application
+"""This module contains the principal application
 """
 
 
@@ -16,7 +15,8 @@ app.register_blueprint(app_views)
 
 @app.teardown_appcontext
 def tear_down(exception):
-    """calls storage.close()"""
+    """this def calls storage.close()
+    """
     storage.close()
 
 
