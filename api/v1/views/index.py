@@ -11,15 +11,19 @@ from models import storage
 
 @app_views.app_errorhandler(404)
 def err_404(e):
-    """error handler for 404"""
-    resp = make_response(jsonify({'error': 404}))
+    """
+    Error handler for 404
+    """
+    resp = make_response(jsonify({'error': 'Not found'}))
     resp.status_code = 404
     return resp
 
 
 @app_views.app_errorhandler(400)
 def err_400(e):
-    """error handler for 400"""
+    """
+    Error handler for 400
+    """
     resp = make_response(jsonify({'error': 'Not a JSON'}))
     resp.status_code = 400
     return resp
@@ -27,7 +31,9 @@ def err_400(e):
 
 @app_views.route('/status', methods=['GET'], strict_slashes=False)
 def show_status():
-    """returns the api status"""
+    """
+    Returns the api status
+    """
     resp = make_response(jsonify({'status': 'OK'}))
     resp.status_code = 200
     return resp
@@ -35,7 +41,9 @@ def show_status():
 
 @app_views.route('/stats', methods=['GET'], strict_slashes=False)
 def stats():
-    """retrieves the number of each objects by type"""
+    """
+    Retrieves the number of each objects by type
+    """
     objs = storage.all().values()
     obdict = {}
     for obj in objs:
