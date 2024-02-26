@@ -7,7 +7,7 @@ def stats():
     Retrieves the number of each objects by type
     """
     objs = storage.all().values()
-    # print(objs)
+    print(objs)
     obdict = {}
     for obj in objs:
         cls = obj.__class__

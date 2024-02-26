@@ -2,6 +2,7 @@
 """
 This module contains the principal application
 """
+
 from os import getenv
 from flask import Flask
 from api.v1.views import app_views

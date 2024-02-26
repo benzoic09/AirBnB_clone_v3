@@ -8,4 +8,4 @@ m_imported = import_module(sys.argv[1])
 if m_imported.__doc__ is None:
     print('no module doc')
 else:
-    print('ok')
+    print(f'ok, {m_imported.__doc__}')
