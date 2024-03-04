@@ -45,21 +45,24 @@ class DBStorage:
         A method to retrieve one object
         Returns the object based on the class and its ID,
         or None if not found"""
-        obj = self.__session.query(cls).filter(cls.id == id).one_or_none()
-        return (obj)
+        if cls is None or id is None:
+            return None
+        key = cls.__name__ + '.' + id
+        return self.__session.query(classes[cls]).get(id)
 
     def count(self, cls=None):
         """A method to count the number of objects in storage
         Returns the number of objects in storage matching the given class.
         If no class is passed, returns the count of all objects in storage"""
-        new_dict = {}
-        for clss in classes:
-            if cls is None or cls is classes[clss] or cls is clss:
-                objs = self.__session.query(classes[clss]).all()
-                for obj in objs:
-                    key = obj.__class__.__name__ + '.' + obj.id
-                    new_dict[key] = obj
-        return (len(new_dict))
+        if cls is None:
+            # If no class is provided, count all objects
+            total_count = 0
+            for clss in classes.values():
+                total_count += self.__session.query(clss).count()
+            return total_count
+        else:
+            # Count objects of the specified class
+            return self.__session.query(cls).count()
 
     def all(self, cls=None):
         """query on the current database session"""

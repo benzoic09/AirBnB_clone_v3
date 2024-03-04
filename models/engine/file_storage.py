@@ -38,22 +38,20 @@ class FileStorage:
         """A method to count the number of objects in storage
         Returns the number of objects in storage matching the given class.
         If no class is passed, returns the count of all objects in storage"""
-        if cls is not None:
-            new_dict = {}
-            for key, value in self.__objects.items():
-                if cls == value.__class__ or cls == value.__class__.__name__:
-                    new_dict[key] = value
-            return len(new_dict)
-        return len(self.__objects)
+        if cls is None:
+            return len(self.__objects)
+        else:
+            return len([obj for obj in self.__objects.values() if isinstance(obj, cls)])
 
     def get(self, cls, id):
         """
         A method to retrieve one object
         Returns the object based on the class and its ID,
         or None if not found"""
-        key = f'{cls.__name__}.{id}'
-        if key in self.__objects:
-            return self.__objects[key]
+        objs = self.all(cls).values()
+        for obj in objs:
+            if obj.id == id:
+                return obj
         return None
 
     def new(self, obj):
